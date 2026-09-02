@@ -1,0 +1,43 @@
+{
+  "expectations": [
+    {
+      "text": "输出了一个 .md 文件",
+      "passed": true,
+      "evidence": "生成了 git-search-rtw-20260602_095338.md"
+    },
+    {
+      "text": "每条记录有 Commit ID（短ID和长ID）",
+      "passed": true,
+      "evidence": "3 条 commit 均包含完整 40 位 hash 和短 ID，如 `77393ddd6688869dd749c6e0de56ccb715d8fe7f` / `77393ddd668`"
+    },
+    {
+      "text": "每条记录有作者和日期",
+      "passed": true,
+      "evidence": "表格中包含日期和作者字段，如 `2026-05-19 10:48:23` / `rayman.ye`"
+    },
+    {
+      "text": "每条记录有该文件对应的 diff 内容",
+      "passed": true,
+      "evidence": "3 条 commit 均有 ```diff 代码块，包含文件级别 diff"
+    },
+    {
+      "text": "报告包含匹配来源说明（message 命中 / diff 命中 / 两者均命中）",
+      "passed": true,
+      "evidence": "表格中 `匹配来源` 字段分别标注为 `diff 内容` 或 `两者均匹配`"
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "total": 5,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {"Bash": 8, "Read": 2, "Write": 1},
+    "total_tool_calls": 11,
+    "total_steps": 8,
+    "errors_encountered": 0,
+    "output_chars": 18500,
+    "transcript_chars": 2100
+  }
+}

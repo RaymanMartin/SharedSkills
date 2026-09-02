@@ -1,0 +1,41 @@
+{
+  "skill_name": "bt-qdid-expert",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我想查询SC60模组的蓝牙版本和QDID，我们用的是Android 11",
+      "expected_output": "应输出SC60的WCN芯片型号（WCN3680B/WCN3680），Controller QDID（如67796或47905），Host QDID（Android 11/R对应的149467），以及最终蓝牙版本（4.0或4.1）",
+      "files": [],
+      "expectations": [
+        "输出包含WCN芯片型号（WCN3680B或WCN3680）",
+        "输出Controller QDID号码（如34203、47905、67796之一）",
+        "输出Host QDID号码（Android 11/R对应149467）",
+        "输出最终蓝牙版本（应为4.0或4.1）",
+        "使用了lookup_module_wcn.py脚本或读取Excel文件"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "帮我查一下SC680A模组的BT QDID，Android 12",
+      "expected_output": "应输出SC680A的WCN芯片，对应的Controller QDID，Android 12 (S)的Host QDID（176512或176546），以及最终BT版本",
+      "files": [],
+      "expectations": [
+        "成功在Excel中找到SC680A对应的WCN芯片型号",
+        "输出Controller对应的Declaration ID或QDID",
+        "输出Host Android 12 (S)的QDID（176512或176546）",
+        "输出最终蓝牙版本"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "我需要查SC60的蓝牙QDID",
+      "expected_output": "由于没有提供Android版本，skill应该询问客户Android版本，然后再给出结果",
+      "files": [],
+      "expectations": [
+        "识别出缺少Android版本信息",
+        "向用户询问Android版本",
+        "提示Android版本是必需信息"
+      ]
+    }
+  ]
+}

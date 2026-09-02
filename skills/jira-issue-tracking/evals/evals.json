@@ -1,0 +1,76 @@
+{
+  "skill_name": "jira-issue-tracking",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我分析这个Jira单：https://jira.example.com/browse/WIFI-4821。账号 admin，密码 test123。这个单子是关于WiFi断连的bug，我想知道根因是什么、补丁有没有合入，生成一份中文md报告。",
+      "expected_output": "生成 jira_WIFI-4821_report.md，包含结论先行表格（根因、受影响版本、补丁状态）、时间轴、日志分析、补丁diff内容和评论摘要",
+      "files": [],
+      "expectations": [
+        "输出文件名包含 WIFI-4821",
+        "报告包含 '一、结论先行' 或 '结论先行' 章节",
+        "报告包含 '时间轴' 或 'Timeline' 章节",
+        "报告包含 '日志分析' 章节",
+        "报告包含 '补丁' 或 'Patch' 章节",
+        "报告不包含明文密码 test123"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "我有一个Jira Server的bug单，地址是 http://10.0.0.5:8080/browse/KERNEL-302，用户名 dev_user，密码 P@ssw0rd。这个单子是内核崩溃，挂了tombstone，请读取后生成分析报告，重点分析crash根因和补丁状态。",
+      "expected_output": "生成 jira_KERNEL-302_report.md，根因总结在最顶部，包含完整的崩溃栈分析和补丁diff",
+      "files": [],
+      "expectations": [
+        "输出文件名包含 KERNEL-302",
+        "报告包含根因相关内容（根因总结 / root cause）",
+        "报告包含 '三、日志分析' 或类似章节",
+        "报告包含 'tombstone' 或 'crash' 关键词分析",
+        "报告包含 '四、补丁内容' 或 'Patch' 章节",
+        "报告不包含明文密码 P@ssw0rd"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "帮我读这个Jira单并生成报告：https://jira.mycompany.net/browse/BT-9901，login: qa_bot / qabotpass。单子里有两个patch文件和一份logcat日志，我希望报告按时间顺序整理事件，最后把两个patch都完整展示出来。",
+      "expected_output": "生成 jira_BT-9901_report.md，时间轴完整，两个patch文件都完整展示在补丁章节中，每个patch有独立小节",
+      "files": [],
+      "expectations": [
+        "输出文件名包含 BT-9901",
+        "报告包含时间轴/Timeline章节",
+        "补丁章节包含至少两个 4.x 小节或两个 diff 代码块",
+        "diff 代码块使用 ```diff 格式",
+        "报告不包含明文密码 qabotpass"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "帮我分析这个Jira单：https://jira.example.com/browse/WIFI-9031。用户名 wifi_qa，密码 secret123。输出目录是 /tmp/wifi-case。这个单子是 SoftAP 场景下客户端能连上热点但互 ping 不通，附件里有 syslog、两张截图和一个 pcap 包。请按公司 Case 文档风格生成报告，并在分析过程里给出 WiFi 链路判断。",
+      "expected_output": "在 /tmp/wifi-case 生成 jira_WIFI-9031_report.md，文档包含 Case 信息头、背景、日志与证据、分析过程、结论、解决方案、下一步计划，并以 WiFi 专家视角分析，抓取日志/截图/pcap，图表使用 Mermaid",
+      "files": [],
+      "expectations": [
+        "输出路径位于 /tmp/wifi-case",
+        "报告包含 'Case 信息头' 或 '[!info]'",
+        "报告包含 '日志与证据' 章节",
+        "报告包含 '分析过程' 章节",
+        "报告包含 '代码 / 驱动链路分析' 或 WiFi 链路分析内容",
+        "报告包含 '```mermaid' 代码块",
+        "报告不包含明文密码 secret123"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "请读取 Jira 单 https://jira.example.com/browse/BT-2207，账号 bt_admin，密码 btpass。输出目录 /tmp/bt-case。问题是 BLE 连接成功后数据同步异常，附件里有 bt_stack 日志、btsnoop 抓包和几张关键截图。请按统一 Case 模板输出，并用 BT 专家视角分析。",
+      "expected_output": "在 /tmp/bt-case 生成 jira_BT-2207_report.md，文档包含 Case 模板章节、BT 栈分析、附件清单、时间轴、结论和下一步计划，必要图表使用 Mermaid",
+      "files": [],
+      "expectations": [
+        "输出路径位于 /tmp/bt-case",
+        "输出文件名包含 BT-2207",
+        "报告包含 '日志与证据' 章节",
+        "报告包含 BT 专家链路分析，如 App -> Framework -> HAL(bt_stack) -> kernel -> btfm",
+        "报告包含 '下一步计划' 章节",
+        "报告包含 '```mermaid' 代码块",
+        "报告不包含明文密码 btpass"
+      ]
+    }
+  ]
+}

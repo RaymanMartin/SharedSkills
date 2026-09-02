@@ -1,0 +1,48 @@
+{
+  "expectations": [
+    {
+      "text": "输出了一个 .md 文件到仓库根目录",
+      "passed": true,
+      "evidence": "生成了 git-search-scan-20260602_095254.md，并复制到 outputs 目录"
+    },
+    {
+      "text": "每条 commit 包含完整的 40 位 commit hash",
+      "passed": true,
+      "evidence": "报告中包含 `1db805954da45711276a6ada7f7767ef989f54b7`（40 位）"
+    },
+    {
+      "text": "每条 commit 包含 commit message",
+      "passed": true,
+      "evidence": "包含 Commit Message 区块，内容为 `QSC200UP-BBU:Upload QSC200UP-BBU source code`"
+    },
+    {
+      "text": "每条 commit 包含该目标文件的 diff（以代码块展示）",
+      "passed": true,
+      "evidence": "文件变更区块使用 ```diff 代码块，包含完整 diff 内容（共 535 行）"
+    },
+    {
+      "text": "报告头部包含文件路径、关键字、搜索时间、匹配总数等元信息",
+      "passed": true,
+      "evidence": "报告头部含：仓库、目标文件、关键字、搜索时间、匹配结果共 1 条"
+    },
+    {
+      "text": "搜索同时覆盖了 commit message 和 diff 内容（双向搜索）",
+      "passed": true,
+      "evidence": "匹配来源字段标注为 `diff 内容`，说明执行了双向搜索并分别标注来源"
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "failed": 0,
+    "total": 6,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {"Bash": 3, "Read": 3, "Write": 0},
+    "total_tool_calls": 9,
+    "total_steps": 7,
+    "errors_encountered": 1,
+    "output_chars": 23567,
+    "transcript_chars": 1861
+  }
+}

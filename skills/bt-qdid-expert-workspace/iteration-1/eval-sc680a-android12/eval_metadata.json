@@ -1,0 +1,11 @@
+{
+  "eval_id": 2,
+  "eval_name": "sc680a-android12-full-query",
+  "prompt": "帮我查一下SC680A模组的BT QDID，Android 12",
+  "assertions": [
+    "成功在Excel中找到SC680A对应的WCN芯片（WCN3988）",
+    "输出Controller Declaration ID D043254和QDID 133994",
+    "输出Host Android 12(S) QDID（176512或176546）",
+    "输出最终蓝牙版本V5.1"
+  ]
+}

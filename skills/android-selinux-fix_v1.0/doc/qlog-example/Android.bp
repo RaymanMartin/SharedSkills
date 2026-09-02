@@ -1,0 +1,22 @@
+cc_prebuilt_binary {
+    name: "qlog_server",
+    vendor: true,
+    srcs:  ["qlog_server"],
+    init_rc: ["qlog.rc"],
+    shared_libs: ["libcutils",
+                  "liblog",
+                  "libutils",],
+}
+
+prebuilt_etc {
+    name: "default_logmask_5G.cfg",
+    src: "etc/default_logmask_5G.cfg",
+    proprietary: true,
+}
+
+prebuilt_etc {
+    name: "GNSS_New.cfg",
+    src: "etc/GNSS_New.cfg",
+    proprietary: true,
+}
+

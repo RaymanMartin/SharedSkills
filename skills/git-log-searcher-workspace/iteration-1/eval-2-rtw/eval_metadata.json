@@ -1,0 +1,12 @@
+{
+  "eval_id": 2,
+  "eval_name": "rtw-driver-diff-search",
+  "prompt": "在仓库 /home/quectel/HardDisk3/sm6115_a14_r01_yd 里，帮我检索 6115_IOT_100004_vendor/kernel_platform/msm-kernel/drivers/net/wireless/rtl8852bs/core/rtw_ieee80211.c 的 git log，关键字是 'rtw'，结果输出为 md 报告",
+  "assertions": [
+    "输出了一个 .md 文件",
+    "每条记录有 Commit ID（短ID和长ID）",
+    "每条记录有作者和日期",
+    "每条记录有该文件对应的 diff 内容",
+    "报告包含匹配来源说明（message 命中 / diff 命中 / 两者均命中）"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "repository": "/home/quectel/HardDisk3/sm6115_a14_r01_yd",
+  "working_directory": "/home/quectel/HardDisk3/sm6115_a14_r01_yd",
+  "file": "6115_IOT_100004_AP/packages/modules/Wifi/service/java/com/android/server/wifi/WifiServiceImpl.java",
+  "keyword": "xxxxxxxxxnotexist",
+  "report_files": [
+    "git-log-search-report.md"
+  ],
+  "search_methods": [
+    "git log --grep",
+    "git log -S",
+    "git log -G"
+  ],
+  "file_exists_in_worktree": true,
+  "total_commits_touching_file": 17,
+  "commit_message_matches": 0,
+  "pickaxe_matches": 0,
+  "regex_matches": 0,
+  "total_matches": 0
+}

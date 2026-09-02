@@ -1,0 +1,53 @@
+{
+  "skill_name": "android-wifi-expert-analyzer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我分析这个 WiFi 日志目录，问题是 2.4G Roam 丢包率 21.2%，标准 <= 2.0%。代码在 packages/modules/Wifi，请输出 Markdown 报告，包含代码链路和 Mermaid 图。",
+      "expected_output": "应按日志证据确认 Roam 类型，区分 firmware roaming unsupported 与 Framework CMD_START_ROAM 触发点，追踪 WifiConnectivityHelper/WifiConnectivityManager/ClientModeImpl/WifiNative/SupplicantStaIfaceHal，并输出中文 md 报告。",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Android 设备连不上 WiFi，logcat 里有 CTRL-EVENT-ASSOC-REJECT 和 WifiBlocklistMonitor。请从 App 到 Framework、supplicant、kernel、driver 分层分析，并输出 md 文档。",
+      "expected_output": "应识别连接失败链路，提取 ASSOC-REJECT、blocklist、Framework connect request、supplicant 状态、kernel/driver 证据，输出分层根因、代码链路、Mermaid 图和修复建议。",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "热点 SAP 启动失败，日志目录里有 hostapd 和 SoftApManager 日志。帮我定位是 Framework、hostapd、channel 还是 driver 的问题，并给代码调用链。",
+      "expected_output": "应使用 SAP playbook，检查 SoftApManager/HostapdHal/hostapd/AP-ENABLED/Tethering/channel/driver，给出分层证据、代码调用链、Mermaid 时序图和修复建议。",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "WiFi 性能差且功耗高，怀疑 scan 太频繁或者驱动没有进省电。请帮我分析 logcat 和 dmesg，并形成 Case 文档。",
+      "expected_output": "应按 performance/power playbook 统计 scan、wakelock、suspend/resume、link speed/RSSI/MCS、driver power-save 证据，区分 RF/Framework/driver/power 管理根因，并输出报告。",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "请参考《盈达-A16-RTL8852BS Roam能力支持报告.md》的标题结构，结合 Framework、HAL、RTW 驱动代码链路，确认为什么日志出现 Firmware roaming is not supported，以及为什么系统认为驱动不支持 Roam。请输出 md 文档和 Mermaid 图。",
+      "expected_output": "应使用代码链路/能力支持报告大纲，包含层级路径说明、层级错误订正、关键日志证据、完整调用链、关键函数分层解析、Mermaid 时序图、分阶段流程图、代码状态机图、架构说明、关键源码索引、变体风险未解析边界、修复建议与验证方案；应区分 HAL feature bit 未上报、Framework fallback、setRoamingState 失败和 RTW driver 实际边界。",
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "WiFi 已经显示连接成功，但设备拿不到 IP，logcat 有 IpClient/DhcpClient，目录里还有 tcpdump.pcapng。请结合日志和 pcap/Wireshark 数据帧确认 DHCP 卡在哪一步，并输出 md 报告和 Mermaid 图。",
+      "expected_output": "应使用 Connectivity/IP/Pcap playbook，分析 DHCP DISCOVER/OFFER/REQUEST/ACK/NAK、IpClient/DhcpClient 状态、NetworkAgent/LinkProperties、接口和 driver tx/rx 证据；应说明 pcap 抓包点、帧级时间线、根因归属，并给出代码链路和修复验证建议。",
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "WiFi 连接和 DHCP 都成功，但 ping 网关大量丢包，怀疑 ARP 异常或驱动丢包。日志目录有 logcat、dmesg 和 pcap，请从 Android Framework 到 kernel/driver，再结合 ARP/ICMP 数据帧分析。",
+      "expected_output": "应区分 L2 连接、DHCP、ARP 邻居状态、ICMP echo request/reply、NetworkMonitor、kernel neighbor/NUD、driver link/roam/scan/power-save 证据；应输出 Pcap/Wireshark 证据表、时间线、Mermaid 时序图和根因置信度。",
+      "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "WiFi 能 ping 通网关和 8.8.8.8，但打不开域名，怀疑 DNS 异常。请结合 logcat/netd/DnsResolver/NetworkMonitor 和 pcap 分析 DNS 查询与响应，并给代码链路。",
+      "expected_output": "应分析 DNS query 是否发出、DNS server 是否响应、rcode、Private DNS、netd/DnsResolver、NetworkMonitor validation、默认网络和路由；应避免把 DNS 服务器问题误判为 WiFi 连接问题，并输出 pcap 证据表、代码链路和验证方案。",
+      "files": []
+    }
+  ]
+}

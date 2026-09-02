@@ -1,0 +1,19 @@
+service qlog /vendor/bin/qlog_server
+    class core
+    user root
+    group root system wifi media_rw sdcard_rw bluetooth log everybody
+    socket qlog.socket stream 666 root root
+    disabled
+
+on property:persist.vendor.qlog.active=1
+    start qlog
+    mkdir /data/vendor/qlog_file 0700 root root
+
+on property:persist.vendor.qlog.active=0
+    stop qlog
+
+on property:persist.vendor.qlog.cnss_diag=1
+   start vendor.cnss_diag
+on property:persist.vendor.qlog.cnss_diag=0
+   stop vendor.cnss_diag
+

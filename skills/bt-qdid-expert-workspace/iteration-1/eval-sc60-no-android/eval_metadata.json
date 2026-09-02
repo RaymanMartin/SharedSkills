@@ -1,0 +1,11 @@
+{
+  "eval_id": 3,
+  "eval_name": "sc60-missing-android-version",
+  "prompt": "我需要查SC60的蓝牙QDID",
+  "assertions": [
+    "识别出缺少Android版本信息",
+    "向用户询问Android版本",
+    "在获得Android版本后完成了完整查询",
+    "最终输出包含Host QDID和Controller QDID"
+  ]
+}

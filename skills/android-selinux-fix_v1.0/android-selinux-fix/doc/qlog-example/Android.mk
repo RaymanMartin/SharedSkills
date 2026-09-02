@@ -1,0 +1,10 @@
+LOCAL_PATH:= $(call my-dir)
+include $(CLEAR_VARS)
+LOCAL_MODULE        := QLog_APP
+LOCAL_MODULE_CLASS  := APPS
+LOCAL_CERTIFICATE   := platform
+LOCAL_MODULE_SUFFIX := .apk
+LOCAL_SRC_FILES     := qlog_app.apk
+LOCAL_DEX_PREOPT := false
+LOCAL_VENDOR_MODULE := true
+include $(BUILD_PREBUILT)

@@ -1,0 +1,9 @@
+/vendor/bin/qlog_server            u:object_r:qlog_exec:s0
+
+# qlog file
+/data/media/0/Qlog                 u:object_r:vendor_qlog_file:s0
+/storage/emulated/0/Qlog/OtherLog  u:object_r:vendor_qlog_file:s0
+/data/vendor/qlog_file(/.*)?       u:object_r:vendor_qlog_config_file:s0
+/dev/socket/qlog.socket            u:object_r:qlog_socket:s0
+#/vendor/etc/config.xml             u:object_r:vendor_qlog_file:s0
+#/vendor/etc/logserver_new.xml      u:object_r:vendor_qlog_file:s0

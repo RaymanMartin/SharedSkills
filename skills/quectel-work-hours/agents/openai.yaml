@@ -1,0 +1,4 @@
+interface:
+  display_name: "Quectel Work Hours"
+  short_description: "统计 HR 自然月考勤加班时长"
+  default_prompt: "Use $quectel-work-hours to summarize my Quectel HR monthly overtime."

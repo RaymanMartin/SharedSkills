@@ -1,0 +1,20 @@
+{
+  "repo": "/home/quectel/HardDisk3/sm6115_a14_r01_yd",
+  "file": "6115_IOT_100004_vendor/kernel_platform/msm-kernel/drivers/net/wireless/rtl8852bs/core/rtw_ieee80211.c",
+  "keywords": [
+    "rtw"
+  ],
+  "search_time": "2026-06-02 09:53:38",
+  "history_commit_count": 4,
+  "message_match_count": 1,
+  "diff_match_count": 3,
+  "unique_match_count": 3,
+  "matched_commits": [
+    "77393ddd6688869dd749c6e0de56ccb715d8fe7f",
+    "60a2e7e8420383e1e2d478cf81e3129cf31d981d",
+    "4b84d90f763dca5fbddaac3197796abb70bb8319"
+  ],
+  "report_path_repo_root": "/home/quectel/HardDisk3/sm6115_a14_r01_yd/git-search-rtw-20260602_095338.md",
+  "report_path_output_dir": "/home/quectel/.copilot/skills/git-log-searcher-workspace/iteration-1/eval-2-rtw/with_skill/outputs/git-search-rtw-20260602_095338.md",
+  "output_dir": "/home/quectel/.copilot/skills/git-log-searcher-workspace/iteration-1/eval-2-rtw/with_skill/outputs"
+}

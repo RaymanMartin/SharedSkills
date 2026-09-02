@@ -1,0 +1,44 @@
+{
+  "skill_name": "git-log-searcher",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我在 /home/quectel/HardDisk3/sm6115_a14_r01_yd 这个 git 仓库里，帮我找 6115_IOT_100004_AP/packages/modules/Wifi/service/java/com/android/server/wifi/WifiServiceImpl.java 这个文件的提交历史，关键字是 'scan'，把匹配的 commit 信息、message 和文件 diff 输出到 md 文件",
+      "expected_output": "生成一个 MD 文件，包含所有包含 scan 关键字的 commit，每条 commit 有完整的 commit ID、commit message 和该文件的 diff",
+      "files": [],
+      "expectations": [
+        "输出了一个 .md 文件到仓库根目录",
+        "每条 commit 包含完整的 40 位 commit hash",
+        "每条 commit 包含 commit message",
+        "每条 commit 包含该目标文件的 diff（以 diff 代码块展示）",
+        "报告头部包含文件路径、关键字、搜索时间、匹配总数等元信息",
+        "搜索同时覆盖了 commit message 和 diff 内容（双向搜索）"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "在仓库 /home/quectel/HardDisk3/sm6115_a14_r01_yd 里，帮我检索 6115_IOT_100004_vendor/kernel_platform/msm-kernel/drivers/net/wireless/rtl8852bs/core/rtw_ieee80211.c 的 git log，关键字是 'rtw'，结果输出为 md 报告",
+      "expected_output": "生成 MD 报告，列出所有 commit message 或 diff 中包含 rtw 的提交，包含 commitId、消息、diff",
+      "files": [],
+      "expectations": [
+        "输出了一个 .md 文件",
+        "每条记录有 Commit ID（短ID和长ID）",
+        "每条记录有作者和日期",
+        "每条记录有该文件对应的 diff 内容",
+        "报告包含匹配来源说明（message 命中 / diff 命中 / 两者均命中）"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "帮我在 /home/quectel/HardDisk3/sm6115_a14_r01_yd 仓库里搜索 6115_IOT_100004_AP/packages/modules/Wifi/service/java/com/android/server/wifi/WifiServiceImpl.java 的提交历史，关键字是 'xxxxxxxxxnotexist'，结果写到 md",
+      "expected_output": "生成 MD 报告，明确说明未找到匹配结果，但报告头部元信息完整",
+      "files": [],
+      "expectations": [
+        "输出了一个 .md 文件",
+        "对未找到结果有明确的提示说明",
+        "有完整的报告头部（仓库路径、文件、关键字、时间）",
+        "没有崩溃或错误退出，行为优雅"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Markdown to Confluence"
+  short_description: "Import Markdown files with images into Confluence"

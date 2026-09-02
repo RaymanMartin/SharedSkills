@@ -1,0 +1,38 @@
+{
+  "expectations": [
+    {
+      "text": "输出了一个 .md 文件",
+      "passed": true,
+      "evidence": "生成了 git-search-xxxxxxxxxnotexist-20260602_095255.md"
+    },
+    {
+      "text": "对未找到结果有明确的提示说明（不是空文件或崩溃）",
+      "passed": true,
+      "evidence": "报告末尾包含：`未找到匹配提交：commit message 命中 0 条，diff 内容命中 0 条`"
+    },
+    {
+      "text": "有完整的报告头部（仓库路径、文件、关键字、时间）",
+      "passed": true,
+      "evidence": "报告头部含：仓库、目标文件、关键字 `xxxxxxxxxnotexist`、搜索时间 2026-06-02 09:52:55、共 0 条"
+    },
+    {
+      "text": "行为优雅，没有未处理的报错输出",
+      "passed": true,
+      "evidence": "报告正常生成，还额外列出了该文件的 17 条提交历史供参考，体验友好"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {"Bash": 5, "Read": 2, "Write": 1},
+    "total_tool_calls": 8,
+    "total_steps": 6,
+    "errors_encountered": 0,
+    "output_chars": 1800,
+    "transcript_chars": 1400
+  }
+}

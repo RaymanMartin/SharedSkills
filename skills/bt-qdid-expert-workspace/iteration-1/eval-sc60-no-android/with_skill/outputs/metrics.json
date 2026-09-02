@@ -1,0 +1,12 @@
+{
+  "tool_call_counts": {
+    "report_intent": 4,
+    "skill": 1,
+    "view": 3,
+    "bash": 6,
+    "glob": 1,
+    "grep": 1
+  },
+  "multi_tool_parallel_invocations": 3,
+  "total_tool_calls": 16
+}

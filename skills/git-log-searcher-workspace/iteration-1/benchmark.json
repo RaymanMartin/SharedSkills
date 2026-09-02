@@ -1,0 +1,179 @@
+{
+  "metadata": {
+    "skill_name": "git-log-searcher",
+    "skill_path": "/home/quectel/.copilot/skills/git-log-searcher",
+    "timestamp": "2026-06-02T10:00:00Z",
+    "evals_run": ["scan-keyword-search", "rtw-driver-diff-search", "no-results-graceful"],
+    "runs_per_configuration": 1
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "eval_name": "scan-keyword-search",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": 242,
+        "tokens": 0,
+        "tool_calls": 9,
+        "errors": 1
+      },
+      "expectations": [
+        {"text": "输出了一个 .md 文件到仓库根目录", "passed": true, "evidence": "生成了 git-search-scan-20260602_095254.md"},
+        {"text": "每条 commit 包含完整的 40 位 commit hash", "passed": true, "evidence": "包含 1db805954da45711276a6ada7f7767ef989f54b7"},
+        {"text": "每条 commit 包含 commit message", "passed": true, "evidence": "包含 Commit Message 区块"},
+        {"text": "每条 commit 包含该目标文件的 diff（以代码块展示）", "passed": true, "evidence": "使用 ```diff 代码块，共 535 行"},
+        {"text": "报告头部包含文件路径、关键字、搜索时间、匹配总数等元信息", "passed": true, "evidence": "含仓库、文件、关键字、搜索时间、共 1 条"},
+        {"text": "搜索同时覆盖了 commit message 和 diff 内容（双向搜索）", "passed": true, "evidence": "匹配来源标注为 `diff 内容`"}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "scan-keyword-search",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.833,
+        "passed": 5,
+        "failed": 1,
+        "total": 6,
+        "time_seconds": 222,
+        "tokens": 0,
+        "tool_calls": 9,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "输出了一个 .md 文件到仓库根目录", "passed": true, "evidence": "生成了 scan_git_history_report.md"},
+        {"text": "每条 commit 包含完整的 40 位 commit hash", "passed": true, "evidence": "包含完整 hash"},
+        {"text": "每条 commit 包含 commit message", "passed": true, "evidence": "包含 commit message"},
+        {"text": "每条 commit 包含该目标文件的 diff（以代码块展示）", "passed": true, "evidence": "包含 diff"},
+        {"text": "报告头部包含文件路径、关键字、搜索时间、匹配总数等元信息", "passed": false, "evidence": "缺少搜索时间和匹配总数，格式为列表非表格"},
+        {"text": "搜索同时覆盖了 commit message 和 diff 内容（双向搜索）", "passed": true, "evidence": "分两个区块展示"}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "rtw-driver-diff-search",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 261,
+        "tokens": 0,
+        "tool_calls": 11,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "输出了一个 .md 文件", "passed": true, "evidence": "生成了 git-search-rtw-20260602_095338.md"},
+        {"text": "每条记录有 Commit ID（短ID和长ID）", "passed": true, "evidence": "3 条 commit 均含完整 40 位和短 ID"},
+        {"text": "每条记录有作者和日期", "passed": true, "evidence": "表格含日期和作者"},
+        {"text": "每条记录有该文件对应的 diff 内容", "passed": true, "evidence": "3 条均有 ```diff 代码块"},
+        {"text": "报告包含匹配来源说明", "passed": true, "evidence": "匹配来源字段标注 `diff 内容` 或 `两者均匹配`"}
+      ],
+      "notes": ["双向搜索命中 3 条，baseline 只找到 1 条（漏掉 diff 搜索）"]
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "rtw-driver-diff-search",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.4,
+        "passed": 2,
+        "failed": 3,
+        "total": 5,
+        "time_seconds": 142,
+        "tokens": 0,
+        "tool_calls": 4,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "输出了一个 .md 文件", "passed": true, "evidence": "生成了 git-log-rtw-report.md"},
+        {"text": "每条记录有 Commit ID（短ID和长ID）", "passed": false, "evidence": "有完整 hash，无短 ID"},
+        {"text": "每条记录有作者和日期", "passed": true, "evidence": "包含 Author 和 Date"},
+        {"text": "每条记录有该文件对应的 diff 内容", "passed": false, "evidence": "无 diff，仅 commit 元信息"},
+        {"text": "报告包含匹配来源说明", "passed": false, "evidence": "无来源字段，且只搜 message 漏了 diff，命中 1 条而非 3 条"}
+      ],
+      "notes": ["仅用 --grep 搜索，未用 -S pickaxe，漏掉 2 条 diff 命中的 commit"]
+    },
+    {
+      "eval_id": 3,
+      "eval_name": "no-results-graceful",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 217,
+        "tokens": 0,
+        "tool_calls": 8,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "输出了一个 .md 文件", "passed": true, "evidence": "生成了 git-search-xxxxxxxxxnotexist-20260602_095255.md"},
+        {"text": "对未找到结果有明确的提示说明", "passed": true, "evidence": "末尾含：`未找到匹配提交：commit message 命中 0 条，diff 内容命中 0 条`"},
+        {"text": "有完整的报告头部", "passed": true, "evidence": "含仓库、文件、关键字、时间 2026-06-02 09:52:55、共 0 条"},
+        {"text": "行为优雅，没有未处理的报错输出", "passed": true, "evidence": "正常生成，额外列出 17 条文件历史供参考"}
+      ],
+      "notes": ["额外展示文件的 17 条历史是一个加分项"]
+    },
+    {
+      "eval_id": 3,
+      "eval_name": "no-results-graceful",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.75,
+        "passed": 3,
+        "failed": 1,
+        "total": 4,
+        "time_seconds": 141,
+        "tokens": 0,
+        "tool_calls": 4,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "输出了一个 .md 文件", "passed": true, "evidence": "生成了 git-log-search-report.md"},
+        {"text": "对未找到结果有明确的提示说明", "passed": true, "evidence": "报告说明了 0 条命中"},
+        {"text": "有完整的报告头部", "passed": false, "evidence": "缺少搜索时间"},
+        {"text": "行为优雅，没有未处理的报错输出", "passed": true, "evidence": "正常生成"}
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {"mean": 0.967, "stddev": 0.019, "min": 1.0, "max": 1.0},
+      "time_seconds": {"mean": 240, "stddev": 22, "min": 217, "max": 261},
+      "tokens": {"mean": 0, "stddev": 0, "min": 0, "max": 0}
+    },
+    "without_skill": {
+      "pass_rate": {"mean": 0.661, "stddev": 0.187, "min": 0.4, "max": 0.833},
+      "time_seconds": {"mean": 168, "stddev": 42, "min": 141, "max": 222},
+      "tokens": {"mean": 0, "stddev": 0, "min": 0, "max": 0}
+    },
+    "delta": {
+      "pass_rate": "+0.306",
+      "time_seconds": "+72",
+      "tokens": "0"
+    }
+  },
+  "notes": [
+    "eval-2 差异最显著：with_skill 找到 3 条（双向搜索），without_skill 只找到 1 条（仅 --grep）",
+    "eval-1 差异较小（都找到 1 条），主要体现在报告格式质量上",
+    "eval-3（无结果）with_skill 额外展示文件历史列表，体验更好",
+    "with_skill 平均耗时多 72s，用于更完整的双向搜索和结构化格式化",
+    "所有 with_skill 运行均 100% 通过断言；without_skill 平均通过率 66%"
+  ]
+}

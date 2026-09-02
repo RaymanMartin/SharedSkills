@@ -1,0 +1,202 @@
+type qlog, domain;
+type qlog_app, domain, coredomain, system_writes_vendor_properties_violators;
+type qlog_app_data_file, file_type, data_file_type ,core_data_file_type, app_data_file_type;
+type qlog_exec, exec_type, vendor_file_type, file_type;
+type vendor_qlog_prop, property_type, vendor_property_type, vendor_public_property_type;
+type vendor_qlog_file, file_type, data_file_type, core_data_file_type;
+type vendor_qlog_config_file, file_type, data_file_type;
+typeattribute qlog data_between_core_and_vendor_violators;
+typeattribute qlog socket_between_core_and_vendor_violators;
+typeattribute qlog vendor_executes_system_violators;
+
+type qlog_socket,file_type;
+
+init_daemon_domain(qlog)
+
+app_domain(qlog_app)
+binder_use(qlog_app)
+
+#============= shell ==============
+allow shell vendor_qlog_prop:file { read open getattr map };
+
+#============= qlog server==============
+allow qlog qlog:tcp_socket create;
+allow qlog self:tcp_socket { accept bind listen };
+allow qlog node:tcp_socket node_bind;
+allow qlog port:tcp_socket name_bind;
+allow qlog storage_file:dir search;
+allow qlog { media_rw_data_file sdcardfs }:dir { create search read open write add_name rmdir remove_name};
+
+allow qlog qlog:tcp_socket { setopt };
+allow qlog dumpstate:unix_stream_socket connectto;
+allow qlog dumpstate_socket:sock_file write;
+allow qlog fwmarkd_socket:sock_file write;
+allow qlog self:tcp_socket { read write };
+
+allow qlog kmsg_device:chr_file { read open getattr ioctl };
+allow qlog qlog:capability { kill };
+allow qlog kernel:system { syslog_read };
+allow qlog { sdcardfs media_rw_data_file}:file { create getattr write open unlink };
+
+
+
+#============= qlog app==============
+allow qlog_app self:tcp_socket { create getopt };
+#allow qlog_app ashmem_device_service:service_manager find;
+allow qlog_app fwmarkd_socket:sock_file write;
+allow qlog_app gpu_service:service_manager find;
+allow qlog_app gpuservice:binder call;
+#allow qlog_app netd:unix_stream_socket connectto;
+allow qlog_app self:tcp_socket connect;
+allow qlog_app surfaceflinger_service:service_manager find;
+allow qlog_app activity_service:service_manager find;
+allow qlog_app cgroup:file write;
+#allow qlog_app apk_data_file:dir write;
+#allow qlog_app vendor_perf_service:service_manager find;
+allow qlog_app activity_task_service:service_manager find;
+set_prop(qlog_app, vendor_qlog_prop);
+get_prop(qlog_app, vendor_qlog_prop);
+allow qlog_app audio_service:service_manager find;
+
+#============= qlog_app ==============
+allow qlog_app netd:unix_stream_socket connectto;
+allow qlog_app port:tcp_socket name_connect;
+allow qlog_app self:tcp_socket { getattr read write };
+
+allow qlog_app qlog_app_data_file:file { unlink rename create open read setattr write getattr };
+allow qlog_app qlog_app_data_file:dir { unlink rename create remove_name add_name search write getattr };
+
+allow qlog_app vendor_display_prop:file { read open getattr map };
+allow zygote qlog_app_data_file:dir {  getattr  };
+allow installd qlog_app_data_file:dir {  getattr search rename read };
+
+
+#============= qlog app netd ==============
+allow netd qlog_app:fd use;
+allow netd qlog_app:tcp_socket { getopt read setopt write };
+allow qlog netd:unix_stream_socket { connectto };
+allow netd qlog:fd { use };
+allow netd qlog:tcp_socket { read write getopt setopt };
+
+#============= qlog logcat ==============
+allow qlog vendor_shell_exec:file { execute_no_trans };
+allow qlog logcat_exec:file { execute execute_no_trans getattr map open read };
+allow qlog sdcardfs:dir { open read remove_name};
+allow qlog logd_socket:sock_file { write };
+allow qlog sdcardfs:file { rename };
+allow qlog media_rw_data_file:dir { remove_name };
+allow qlog media_rw_data_file:file { rename unlink };
+
+#============= qlog gnss ==============
+allow qlog media_rw_data_file:file read;
+allow qlog qlogd_exec:file execute_no_trans;
+allow qlog sdcardfs:file read;
+allow qlog self:capability { setgid setuid };
+allow qlog storage_file:lnk_file read;
+allow qlog mnt_user_file:dir { search };
+allow qlog mnt_user_file:lnk_file { read };
+allow qlog diag_device:chr_file { ioctl open read write };
+
+#============= qlog file ==============
+allow qlog vendor_qlog_file:file { read write getattr setattr };
+allow qlog vendor_qlog_config_file:file { read write getattr setattr open create };
+allow qlog vendor_qlog_config_file:dir { getattr open read search write add_name create };
+
+#============= qlog prop ==============
+set_prop(qlog, vendor_qlog_prop);
+get_prop(qlog, vendor_qlog_prop);
+
+
+
+#============= qlog wifi ==============
+#allow qlog self:capability dac_read_search;
+allow qlog vendor_toolbox_exec:file execute_no_trans;
+allow qlog wifi_vendor_data_file:file { getattr open read };
+allow qlog media_rw_data_file:dir { getattr };
+allow qlog { hostapd_data_file wifi_vendor_data_file wifi_vendor_wpa_socket wigig_hostapd_socket }:dir { getattr open read search };
+allow qlog { hostapd_data_file vendor_wigig_hostapd_socket  wpa_data_file   }:dir { getattr read open search};
+
+allow qlog { vendor_wifi_vendor_data_file vendor_wifi_vendor_wpa_socket }:dir { getattr open read search };
+allow qlog { vendor_wifi_vendor_data_file vendor_wifi_vendor_wpa_socket }:file { getattr open read getattr};
+
+allow qlog wpa_data_file:dir { getattr open read search };
+allow qlog wpa_data_file:file { getattr open read };
+allow qlog { wpa_data_file wifi_vendor_wpa_socket }:sock_file { getattr create };
+
+
+#============= qlog tcpdump==============
+allow qlog self:capability net_raw;
+allow qlog self:packet_socket { create getopt map read setopt write };
+allow qlog tcpdump_exec:file { execute execute_no_trans getattr map open read };
+allow qlog self:packet_socket { bind };
+
+
+#============= qlog logcat==============
+allow qlog logd:unix_stream_socket connectto;
+allow qlog logdr_socket:sock_file write;
+allow qlog media_rw_data_file:file append;
+allow qlog sdcardfs:file append;
+allow qlog self:capability sys_nice;
+
+#============= qlog bluetooth==============
+allow qlog bluetooth_data_file:dir { getattr open read search };
+allow qlog bluetooth_logs_data_file:dir { open read getattr search };
+#allow qlog bluetooth_prop:property_service set;
+#allow qlog exported_bluetooth_prop:property_service set;
+allow qlog system_data_file:dir getattr;
+allow qlog system_file:dir { add_name };
+allow qlog toolbox_exec:file { execute execute_no_trans getattr map open read };
+allow qlog bluetooth_logs_data_file:file { getattr read open };
+
+#============= qlog bugreport==============
+allow qlog system_file:file { execute getattr open read };
+allow qlog system_file:file { execute_no_trans map };
+
+#============= qlog second sdcard==============
+allow qlog vfat:dir { add_name create open read write search remove_name };
+allow qlog vfat:file { append create open getattr write read unlink };
+
+
+
+#============= dumpstate ==============
+typeattribute dumpstate vendor_executes_system_violators;
+typeattribute dumpstate system_writes_mnt_vendor_violators;
+allow dumpstate mnt_media_rw_file:dir getattr;
+#allow dumpstate mnt_vendor_file:dir getattr;
+#allow dumpstate system_file:dir { add_name write };
+#allow dumpstate system_file:file create;
+
+#============= hal_perf_default ==============
+#allow hal_perf_default hal_power_default:dir search;
+#allow hal_perf_default hal_power_default:file { open read };
+
+#============= system_suspend ==============
+#allow system_suspend dumpstate:fd use;
+#allow system_suspend dumpstate:fifo_file write;
+
+allow qlog ctl_start_prop:property_service { set };
+
+
+
+#============= qlog app qlog.socket ==============
+allow qlog_app qlog_socket:sock_file { write read };
+allow qlog_app qlog:unix_stream_socket { connectto };
+
+
+#============= qlog app media ==============
+allow qlog_app media_session_service:service_manager { find };
+
+
+#============= qlog  tombstone_data_file anr_data_file ==============
+allow qlog { tombstone_data_file anr_data_file }:dir { getattr read open search };
+allow qlog { tombstone_data_file anr_data_file }:file { getattr read open };
+
+#============= fuse ========================================
+allow qlog fuse:dir { search write add_name create read open remove_name rmdir };
+allow qlog fuse:file { append create getattr ioctl open write read unlink };
+
+#============= qlog_app ==============
+allow qlog_app qlog_app_data_file:dir { add_name search write };
+
+allow qlog_app system_data_file:dir { search };
+

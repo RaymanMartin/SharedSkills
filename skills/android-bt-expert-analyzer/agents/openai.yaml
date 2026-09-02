@@ -1,0 +1,4 @@
+interface:
+  display_name: "Android BT Expert Analyzer"
+  short_description: "Diagnose Android Bluetooth failures"
+  default_prompt: "Use $android-bt-expert-analyzer to analyze this Android Bluetooth issue and produce a Chinese engineering report with App to Framework to bt_stack to kernel to BTFM evidence."

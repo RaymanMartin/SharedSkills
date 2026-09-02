@@ -1,0 +1,43 @@
+{
+  "expectations": [
+    {
+      "text": "输出了一个 .md 文件",
+      "passed": true,
+      "evidence": "生成了 git-log-rtw-report.md（24 行）"
+    },
+    {
+      "text": "每条记录有 Commit ID（短ID和长ID）",
+      "passed": false,
+      "evidence": "有 40 位完整 hash，但无短 ID 字段"
+    },
+    {
+      "text": "每条记录有作者和日期",
+      "passed": true,
+      "evidence": "包含 Author 和 Date 字段"
+    },
+    {
+      "text": "每条记录有该文件对应的 diff 内容",
+      "passed": false,
+      "evidence": "报告中无 diff 内容，只输出了 commit 元信息（仅用了 --grep 未执行 git show）"
+    },
+    {
+      "text": "报告包含匹配来源说明（message 命中 / diff 命中 / 两者均命中）",
+      "passed": false,
+      "evidence": "无匹配来源字段，且只搜索了 message（--grep -i），遗漏了 diff 搜索，实际只命中 1 条（正确应为 3 条）"
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 3,
+    "total": 5,
+    "pass_rate": 0.4
+  },
+  "execution_metrics": {
+    "tool_calls": {"Bash": 3, "Read": 0, "Write": 1},
+    "total_tool_calls": 4,
+    "total_steps": 3,
+    "errors_encountered": 0,
+    "output_chars": 900,
+    "transcript_chars": 600
+  }
+}

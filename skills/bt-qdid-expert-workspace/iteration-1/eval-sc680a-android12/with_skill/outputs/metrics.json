@@ -1,0 +1,14 @@
+{
+  "actual_tool_call_counts": {
+    "skill": 1,
+    "report_intent": 4,
+    "view": 2,
+    "bash": 13,
+    "web_fetch": 4,
+    "multi_tool_use.parallel": 8
+  },
+  "notes": [
+    "Counts include all tool calls made while completing this task.",
+    "The final save operation is included in report_intent, bash, and multi_tool_use.parallel counts."
+  ]
+}

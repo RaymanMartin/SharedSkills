@@ -1,0 +1,15 @@
+{
+  "repo": "/home/quectel/HardDisk3/sm6115_a14_r01_yd",
+  "file": "6115_IOT_100004_AP/packages/modules/Wifi/service/java/com/android/server/wifi/WifiServiceImpl.java",
+  "keywords": [
+    "xxxxxxxxxnotexist"
+  ],
+  "search_time": "2026-06-02 09:52:55",
+  "history_commit_count": 17,
+  "message_match_count": 0,
+  "diff_match_count": 0,
+  "unique_match_count": 0,
+  "report_repo_path": "/home/quectel/HardDisk3/sm6115_a14_r01_yd/git-search-xxxxxxxxxnotexist-20260602_095255.md",
+  "report_output_path": "/home/quectel/.copilot/skills/git-log-searcher-workspace/iteration-1/eval-3-noexist/with_skill/outputs/git-search-xxxxxxxxxnotexist-20260602_095255.md",
+  "status": "ok"
+}

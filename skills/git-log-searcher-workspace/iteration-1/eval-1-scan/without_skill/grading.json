@@ -1,0 +1,48 @@
+{
+  "expectations": [
+    {
+      "text": "输出了一个 .md 文件到仓库根目录",
+      "passed": true,
+      "evidence": "生成了 scan_git_history_report.md"
+    },
+    {
+      "text": "每条 commit 包含完整的 40 位 commit hash",
+      "passed": true,
+      "evidence": "包含 `1db805954da45711276a6ada7f7767ef989f54b7`"
+    },
+    {
+      "text": "每条 commit 包含 commit message",
+      "passed": true,
+      "evidence": "包含 commit message 区块"
+    },
+    {
+      "text": "每条 commit 包含该目标文件的 diff（以代码块展示）",
+      "passed": true,
+      "evidence": "包含 diff 内容"
+    },
+    {
+      "text": "报告头部包含文件路径、关键字、搜索时间、匹配总数等元信息",
+      "passed": false,
+      "evidence": "报告头部缺少搜索时间和匹配总数，格式为简单列表非表格"
+    },
+    {
+      "text": "搜索同时覆盖了 commit message 和 diff 内容（双向搜索）",
+      "passed": true,
+      "evidence": "报告分 '## Commits with message matching' 和 '## Commits with file diff matching' 两个区块"
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 1,
+    "total": 6,
+    "pass_rate": 0.833
+  },
+  "execution_metrics": {
+    "tool_calls": {"Bash": 3, "Read": 2, "Write": 0},
+    "total_tool_calls": 9,
+    "total_steps": 5,
+    "errors_encountered": 0,
+    "output_chars": 4200,
+    "transcript_chars": 1200
+  }
+}

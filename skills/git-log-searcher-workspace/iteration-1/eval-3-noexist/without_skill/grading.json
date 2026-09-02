@@ -1,0 +1,38 @@
+{
+  "expectations": [
+    {
+      "text": "输出了一个 .md 文件",
+      "passed": true,
+      "evidence": "生成了 git-log-search-report.md"
+    },
+    {
+      "text": "对未找到结果有明确的提示说明（不是空文件或崩溃）",
+      "passed": true,
+      "evidence": "报告包含明确说明：commit message 0 条，diff 内容 0 条"
+    },
+    {
+      "text": "有完整的报告头部（仓库路径、文件、关键字、时间）",
+      "passed": false,
+      "evidence": "缺少搜索时间字段，格式为简单列表"
+    },
+    {
+      "text": "行为优雅，没有未处理的报错输出",
+      "passed": true,
+      "evidence": "正常生成报告，无崩溃"
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 1,
+    "total": 4,
+    "pass_rate": 0.75
+  },
+  "execution_metrics": {
+    "tool_calls": {"Bash": 3, "Read": 0, "Write": 1},
+    "total_tool_calls": 4,
+    "total_steps": 3,
+    "errors_encountered": 0,
+    "output_chars": 500,
+    "transcript_chars": 400
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "tool_calls": {
+    "Bash": 3,
+    "Read": 3,
+    "Write": 0
+  },
+  "total_tool_calls": 9,
+  "total_steps": 7,
+  "files_created": [
+    "git-search-scan-20260602_095254.md"
+  ],
+  "errors_encountered": 1,
+  "output_chars": 23567,
+  "transcript_chars": 1861
+}

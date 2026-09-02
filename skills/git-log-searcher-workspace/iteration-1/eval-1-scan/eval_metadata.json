@@ -1,0 +1,13 @@
+{
+  "eval_id": 1,
+  "eval_name": "scan-keyword-search",
+  "prompt": "我在 /home/quectel/HardDisk3/sm6115_a14_r01_yd 这个 git 仓库里，帮我找 6115_IOT_100004_AP/packages/modules/Wifi/service/java/com/android/server/wifi/WifiServiceImpl.java 这个文件的提交历史，关键字是 'scan'，把匹配的 commit 信息、message 和文件 diff 输出到 md 文件",
+  "assertions": [
+    "输出了一个 .md 文件到仓库根目录",
+    "每条 commit 包含完整的 40 位 commit hash",
+    "每条 commit 包含 commit message",
+    "每条 commit 包含该目标文件的 diff（以代码块展示）",
+    "报告头部包含文件路径、关键字、搜索时间、匹配总数等元信息",
+    "搜索同时覆盖了 commit message 和 diff 内容（双向搜索）"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "eval_id": 3,
+  "eval_name": "no-results-graceful",
+  "prompt": "帮我在 /home/quectel/HardDisk3/sm6115_a14_r01_yd 仓库里搜索 6115_IOT_100004_AP/packages/modules/Wifi/service/java/com/android/server/wifi/WifiServiceImpl.java 的提交历史，关键字是 'xxxxxxxxxnotexist'，结果写到 md",
+  "assertions": [
+    "输出了一个 .md 文件",
+    "对未找到结果有明确的提示说明（不是空文件或崩溃）",
+    "有完整的报告头部（仓库路径、文件、关键字、时间）",
+    "行为优雅，没有未处理的报错输出"
+  ]
+}

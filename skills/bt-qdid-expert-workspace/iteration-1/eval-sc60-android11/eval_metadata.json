@@ -1,0 +1,12 @@
+{
+  "eval_id": 1,
+  "eval_name": "sc60-android11-full-query",
+  "prompt": "我想查询SC60模组的蓝牙版本和QDID，我们用的是Android 11",
+  "assertions": [
+    "输出包含WCN芯片型号（WCN3680B或WCN3680）",
+    "输出Controller QDID号码（34203、47905或67796之一）",
+    "输出Host QDID号码（Android 11/R对应149467）",
+    "输出最终蓝牙版本（应为4.0或4.1）",
+    "使用了脚本或读取Excel文件进行芯片查找"
+  ]
+}
